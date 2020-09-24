@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-/*
+
 // Once the DOM is ready...
 window.addEventListener('DOMContentLoaded', () => {
   // ...query for the active tab...
@@ -19,15 +19,15 @@ window.addEventListener('DOMContentLoaded', () => {
         {from: 'popup', subject: 'DOMInfo'},
         // ...also specifying a callback to be called 
         //    from the receiving end (content script).
-        (el: any)=>ReactDOM.render(
+        (panel: any)=>ReactDOM.render(
           <React.StrictMode>
-            <App data={{el}}/>
+            <App data={panel.data}/>
           </React.StrictMode>,
           document.getElementById('root')
         ));
   });
-});*/
-
+});
+/*
 let params:any = {
   data: {
     icon: "", name: "root", children: [
@@ -52,7 +52,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 )
-
+*/
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

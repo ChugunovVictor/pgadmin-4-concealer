@@ -110,6 +110,7 @@ export default class App extends React.Component<AppProps> {
   }
 
   render() {
+    console.log(this.props.data)
     return (
       <div className="App"
         onMouseDown={this.startSelection}
