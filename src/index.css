@@ -1,25 +1,52 @@
+html {
+  --main-color:#ddd;
+  --secondary-color:#ccc;
+  --accent-color:#aaa;
+  --text-color:#333;
+  --neutral-color: #888;
+
+  --check-icon:url('./img/sign_check_d.svg');
+  --uncheck-icon:url('./img/sign_uncheck_d.svg');
+  --warn-icon:url('./img/sign_warn_d.svg');
+  --sun-icon:url('./img/sun.svg');
+  --moon-icon:url('./img/moon.svg');
+}
+
+html[data-theme="night"] {
+  --main-color:#333;
+  --secondary-color:#444;
+  --accent-color:#666;
+  --text-color:#ddd;
+
+  --check-icon:url('./img/sign_check_n.svg');
+  --uncheck-icon:url('./img/sign_uncheck_n.svg');
+  --warn-icon:url('./img/sign_warn_n.svg');
+}
+
 body {
   margin: 0;
   width: 600px;
   height: 600px;
-  background: #333;
-  color: #ddd;
+  background: var(--main-color);
+  color: var(--text-color);
   font-family: monospace;
   overflow: hidden;
+  transition: background-color 1s, color 1s;
 }
 
 .Row{
-  background: #444;
+  background: var(--secondary-color);
   margin: 3px;
   border-radius: 5px;
   user-select: none;
 }
 
 .Selected{
-  background: #666;
+  background: var(--accent-color);
 }
 
 .App{
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
@@ -44,13 +71,79 @@ body {
   left: 0;
   height: 15px;
   width: 15px;
-  background: url('./sign_check.svg');
+  background: var(--check-icon);
 }
 
 .CheckedChild {
-  background: url('./sign_warn.svg');
+  background: var(--warn-icon);
 }
 
 .RowCheckbox input:checked ~ .RowCheckboxMark {
-  background: url('./sign_uncheck.svg') !important;
+  background: var(--uncheck-icon) !important;
+}
+
+.Template{
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  overflow: hidden;
+}
+
+.Panel{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 45px;
+  background: var(--secondary-color);
+  border-radius: 5px;
+  margin: 3px 0;
+}
+
+
+
+.SwitchCheckbox {
+  position: relative;
+  user-select: none;
+  background: var(--accent-color);
+  width: 40px;
+  height: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-self: center ;
+  margin-top: 3px;
+}
+
+.SwitchCheckbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.SwitchSunMark {
+  flex:1;
+  background: var(--sun-icon) no-repeat;
+}
+
+.SwitchMoonMark {
+  flex:1;
+  background: var(--moon-icon);
+}
+
+.SwitchSlider{
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  position: absolute;
+  opacity: 0.75;
+  background: var(--neutral-color);
+  left: 0%;
+  transition: all 1s ease;
+}
+
+.SwitchCheckbox input:checked ~ .SwitchSlider {
+  left: 100%;
+  transform: translate(-100%, 0);
 }

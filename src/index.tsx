@@ -28,7 +28,8 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 /*
-let params:any = {
+
+let params: any = {
   data: {
     icon: "", name: "root", children: [
       {
@@ -36,19 +37,38 @@ let params:any = {
           { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name104" },
           { children: [], icon: "", id: "tree_name105", name: "Табличные пространства" },
           { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name104" },
-          { children: [], icon: "", id: "tree_name105", name: "Табличные пространства" },
-          { icon: "", id: "tree_name2", name: "Базы данных (3)", "children": [
+          { children: [], icon: "", id: "tree_name305", name: "Табличные пространства" },
+          {
+            icon: "", id: "tree_name2", name: "Базы данных (3)", "children": [
               { name: "postgres", icon: "", children: Array(0), id: "tree_name3" },
               { children: [], icon: "", id: "tree_name4", name: "sp_main" },
               { name: "sp_portal", icon: "", children: Array(0), id: "tree_name103" }
-            ] }
-        ]}
-    ]}
+            ]
+          }
+        ]
+      },
+      {
+        icon: "", id: "tree_name222", name: "PostgreSQL 12", children: [
+          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name225" },
+          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
+          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name204" },
+          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
+          {
+            icon: "", id: "tree_name333", name: "Базы данных (3)", "children": [
+              { name: "postgres", icon: "", children: Array(0), id: "tree_name233" },
+              { children: [], icon: "", id: "tree_name433", name: "sp_main" },
+              { name: "sp_portal", icon: "", children: Array(0), id: "tree_name223" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
 
 ReactDOM.render(
   <React.StrictMode>
-    <App data={params.data}/>
+    <App data={params.data} />
   </React.StrictMode>,
   document.getElementById('root')
 )
