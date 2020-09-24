@@ -2,22 +2,55 @@ body {
   margin: 0;
   width: 600px;
   height: 600px;
-  background: #555;
+  background: #333;
+  color: #ddd;
+  font-family: monospace;
+  overflow: hidden;
 }
 
 .Row{
-  background: #aaa;
+  background: #444;
   margin: 3px;
   border-radius: 5px;
   user-select: none;
 }
 
 .Selected{
-  background: #777;
+  background: #666;
 }
 
 .App{
   display: flex;
   flex-direction: column;
   justify-content: stretch;
+}
+
+.RowCheckbox {
+  position: relative;
+  user-select: none;
+}
+
+.RowCheckbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.RowCheckboxMark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background: url('./sign_check.svg');
+}
+
+.CheckedChild {
+  background: url('./sign_warn.svg');
+}
+
+.RowCheckbox input:checked ~ .RowCheckboxMark {
+  background: url('./sign_uncheck.svg') !important;
 }

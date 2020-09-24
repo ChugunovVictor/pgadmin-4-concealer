@@ -9,11 +9,11 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    viewBox="0 0 50.799999 50.800001"
    version="1.1"
-   id="svg1476"
-   sodipodi:docname="sign_warn.svg"
+   id="svg881"
+   sodipodi:docname="sign_uncheck.svg"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <metadata
-     id="metadata1482">
+     id="metadata887">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -24,7 +24,7 @@
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs1480" />
+     id="defs885" />
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -36,7 +36,7 @@
      inkscape:pageshadow="2"
      inkscape:window-width="1858"
      inkscape:window-height="1057"
-     id="namedview1478"
+     id="namedview883"
      showgrid="false"
      inkscape:zoom="17.519685"
      inkscape:cx="25.4"
@@ -44,39 +44,25 @@
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg1476" />
+     inkscape:current-layer="svg881" />
   <g
-     stroke="yellow"
-     fill="yellow"
-     id="g1474">
+     stroke="lightcoral"
+     id="g879">
     <path
        fill="none"
        stroke="#00000"
        strokeWidth="1.9843751"
-       d="m 26.081767,14.602883 c -8.047789,-1.18e-4 -15.399448,3.565264 -18.9699048,9.199955 3.5704568,5.634691 10.9221158,9.200075 18.9699048,9.199956 3.057076,-1.3e-5 6.013198,-0.51546 8.700244,-1.462443 L 33.673033,15.705142 c -2.38296,-0.715731 -4.949026,-1.102247 -7.591266,-1.102259 z m 16.444992,6.127792 -0.431498,6.54792 c 1.153318,-1.042477 2.151298,-2.205993 2.95589,-3.475757 -0.702328,-1.108374 -1.552935,-2.135312 -2.524392,-3.072163 z"
-       id="path1467"
+       d="M 26.009782,14.612545 C 17.961993,14.612427 10.610333,18.177809 7.0398809,23.8125 10.610333,29.447191 17.961993,33.012573 26.009782,33.012454 34.057384,33.01242 41.408797,29.447061 44.979167,23.8125 41.408797,18.177939 34.057384,14.61258 26.009782,14.612545 Z"
+       id="path875"
        style="stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none" />
     <circle
        fill="none"
        stroke="#00000"
        strokeWidth="1.9843751"
-       id="path863-2"
-       cx="26.008224"
-       cy="23.789761"
-       r="6.5116515"
+       cx="26.3848"
+       cy="23.73897"
+       r="6.511651"
+       id="circle877"
        style="stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none" />
-    <rect
-       fill="#00000"
-       stroke="none"
-       width="3.33375"
-       height="3.33375"
-       x="36.665092"
-       y="34.446609"
-       id="rect1470" />
-    <path
-       fill="#00000"
-       stroke="none"
-       d="m 35.897809,11.95705 h 4.815416 L 39.734267,33.123716 H 36.9826 Z"
-       id="path1472" />
   </g>
 </svg>

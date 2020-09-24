@@ -1,10 +1,4 @@
-import React, { MouseEvent, SyntheticEvent } from 'react';
-import { ReactComponent as Sign } from './sign.svg';
-import { ReactComponent as Warn } from './sign_warn.svg';
-
-let VisibleIcon = () => <Sign stroke="lightgreen" />
-let InvisibleIcon = () => <Sign stroke="red" />
-let WarningIcon = () => <Warn stroke="yellow" fill="yellow" />
+import React, { ChangeEvent, MouseEvent, SyntheticEvent } from 'react';
 
 let SELECT: boolean = false;
 
@@ -19,6 +13,7 @@ class Row extends React.Component<RowProps> {
     super(props);
     this.select = this.select.bind(this)
     this.click = this.click.bind(this)
+    this.changed = this.changed.bind(this)
   }
 
   select(event: SyntheticEvent) {
@@ -31,6 +26,10 @@ class Row extends React.Component<RowProps> {
     (event.currentTarget as Element).classList.add('Selected')
   }
 
+  changed(event: ChangeEvent){
+    console.log(event)
+  }
+
   render() {
     return (
       <div>
@@ -38,10 +37,14 @@ class Row extends React.Component<RowProps> {
           onMouseMove={this.select}
           onClick={this.click}
         >
-          <input type="checkbox" style={{ marginRight: this.props.margin }} />
+          <label style={{ marginRight: this.props.margin }} className="RowCheckbox">
+            <input onChange={this.changed} type="checkbox"/>
+            <span className="RowCheckboxMark"></span>
+          </label>
+
           <label>{this.props.title}</label>
         </div>
-        <div>
+        <div className="RowContent">
           {this.props.children.map((el: any) => (
             <Row
               key={Math.random()}
@@ -70,7 +73,7 @@ export default class App extends React.Component<AppProps> {
 
   keyPress(event: KeyboardEvent) {
     if (event.code == 'Space') {
-      let elements = document.querySelectorAll('.Selected > input[type=checkbox]')
+      let elements = document.querySelectorAll('.Selected input[type=checkbox]')
       let checked = 0;
 
       elements.forEach(
@@ -112,15 +115,9 @@ export default class App extends React.Component<AppProps> {
         onMouseDown={this.startSelection}
         onMouseUp={this.endSelection}
       >
-        <Row margin={0} title={this.props.data.name}
+        <Row margin={25} title={this.props.data.name}
           children={this.props.data.children} />
       </div>
     );
   }
 }
-
-/*
-    <VisibleIcon />
-    <WarningIcon />
-    <InvisibleIcon />
-*/
