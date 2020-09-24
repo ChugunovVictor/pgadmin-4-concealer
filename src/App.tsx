@@ -6,6 +6,8 @@ let VisibleIcon = () => <Sign stroke="lightgreen" />
 let InvisibleIcon = () => <Sign stroke="red" />
 let WarningIcon = () => <Warn stroke="yellow" fill="yellow" />
 
+let SELECT: boolean = false;
+
 type RowProps = {
   title: any,
   children: any[],
@@ -13,16 +15,40 @@ type RowProps = {
 }
 
 class Row extends React.Component<RowProps> {
+  constructor(props: RowProps) {
+    super(props);
+    this.select = this.select.bind(this)
+    this.click = this.click.bind(this)
+  }
+
+  select(event: SyntheticEvent) {
+    if (SELECT) {
+      (event.currentTarget as Element).classList.add('Selected')
+    }
+  }
+
+  click(event: MouseEvent) {
+    (event.currentTarget as Element).classList.add('Selected')
+  }
+
   render() {
     return (
       <div>
-        <div className="Row">
+        <div className="Row"
+          onMouseMove={this.select}
+          onClick={this.click}
+        >
           <input type="checkbox" style={{ marginRight: this.props.margin }} />
           <label>{this.props.title}</label>
         </div>
         <div>
           {this.props.children.map((el: any) => (
-            <Row margin={this.props.margin + 15} title={el.name} children={el.children} />
+            <Row
+              key={Math.random()}
+              margin={this.props.margin + 15}
+              title={el.name}
+              children={el.children}
+            />
           ))}
         </div>
       </div>
@@ -35,84 +61,59 @@ type AppProps = {
 }
 
 export default class App extends React.Component<AppProps> {
-  constructor(props: AppProps, public select:boolean){
+  constructor(props: AppProps, public select: boolean) {
     super(props);
-
-    this.getSelectedNodes = this.getSelectedNodes.bind(this)
     this.startSelection = this.startSelection.bind(this)
     this.endSelection = this.endSelection.bind(this)
+    this.keyPress = this.keyPress.bind(this)
   }
 
-  nextNode(node: Node | Node & ParentNode | null) {
-    if (node?.hasChildNodes()) {
-      return node?.firstChild;
-    } else {
-      while (node && !node.nextSibling) {
-        node = node.parentNode;
-      }
-      if (!node) {
-        return null;
-      }
-      return node.nextSibling;
+  keyPress(event: KeyboardEvent) {
+    if (event.code == 'Space') {
+      let elements = document.querySelectorAll('.Selected > input[type=checkbox]')
+      let checked = 0;
+
+      elements.forEach(
+        el => {
+          // @ts-ignore
+          if (el.checked) checked++;
+          else checked--;
+        }
+      )
+
+      elements.forEach(
+        // @ts-ignore
+        el => { el.checked = checked >= 0 ? false : true }
+      )
     }
   }
 
-  getRangeSelectedNodes(range: Range) {
-    let node: ChildNode | Node | null = range.startContainer;
-    let endNode = range.endContainer;
-
-    // Special case for a range that is contained within a single node
-    if (node == endNode) {
-      return [node];
-    }
-
-    // Iterate nodes until we hit the end container
-    let rangeNodes = [];
-    while (node && node != endNode) {
-      rangeNodes.push(node = this.nextNode(node));
-    }
-
-    // Add partially selected nodes at the start of the range
-    node = range.startContainer;
-    while (node && node != range.commonAncestorContainer) {
-      rangeNodes.unshift(node);
-      node = node.parentNode;
-    }
-
-    return rangeNodes;
+  componentDidMount() {
+    document.addEventListener("keydown", this.keyPress, false);
   }
-
-  getSelectedNodes() {
-    if(!this.select) return;
-    let sel = window.getSelection()
-    if (sel) {
-      if (!sel.isCollapsed) {
-        (this.getRangeSelectedNodes(sel.getRangeAt(0)) as HTMLElement[])
-          .filter(el => el.classList?.contains('Row'))
-          .forEach(el => el.classList.toggle('Selected'))
-      }
-    }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.keyPress, false);
   }
 
   startSelection() {
-    document.querySelectorAll('.Row').forEach(
+    document.querySelectorAll('.Selected').forEach(
       el => el.classList?.remove('Selected')
     )
-    this.select = true;
+    SELECT = true;
   }
-  
+
   endSelection() {
-    this.select = false;
+    SELECT = false;
   }
 
   render() {
     return (
-      <div className="App" 
-        onMouseDown={this.startSelection} 
-        onMouseMove={this.getSelectedNodes}
+      <div className="App"
+        onMouseDown={this.startSelection}
         onMouseUp={this.endSelection}
       >
-        <Row margin={0} title={this.props.data.name} children={this.props.data.children} />
+        <Row margin={0} title={this.props.data.name}
+          children={this.props.data.children} />
       </div>
     );
   }

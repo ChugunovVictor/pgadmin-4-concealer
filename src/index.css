@@ -9,15 +9,11 @@ body {
   background: #aaa;
   margin: 3px;
   border-radius: 5px;
+  user-select: none;
 }
 
 .Selected{
   background: #777;
-}
-
-label::selection{
-  background: #777;
-  user-select: all;
 }
 
 .App{
