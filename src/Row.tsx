@@ -1,11 +1,15 @@
 import React from "react";
 import { ChangeEvent, SyntheticEvent, MouseEvent } from "react";
 import { SELECT } from "./Table";
+import {Record} from './Record'
+import {ReactComponent as ShowIcon} from './img/show.svg';
+import {ReactComponent as HideIcon} from './img/hide.svg';
+//import {ReactComponent as WarnIcon} from './img/warn.svg';
 
 export type RowProps = {
-    title: any,
-    children: any[],
-    margin: number
+    record: Record,
+    margin: number,
+    check: Function
 }
 
 export default class Row extends React.Component<RowProps> {
@@ -14,43 +18,61 @@ export default class Row extends React.Component<RowProps> {
         this.select = this.select.bind(this)
         this.click = this.click.bind(this)
         this.changed = this.changed.bind(this)
+        this.check = this.check.bind(this)
+    }
+
+    state = {
+        checked: false,
+        selected: false
+    }
+
+    componentDidMount(){
+        this.props.check(this.check)
     }
 
     select(event: SyntheticEvent) {
         if (SELECT) {
-            (event.currentTarget as Element).classList.add('Selected')
+            this.setState({selected : true})
         }
     }
 
     click(event: MouseEvent) {
-        (event.currentTarget as Element).classList.add('Selected')
+        this.setState({selected : true})
     }
 
     changed(event: ChangeEvent) {
-        console.log(event)
+        this.setState({checked : !this.state.checked})
+    }
+
+    check(checked: boolean, selected: boolean){
+        if(checked != null && this.state.selected)
+            this.setState({checked : checked, selected: false})
+
+        if(selected)
+            this.setState({selected: false})
     }
 
     render() {
         return (
             <div>
-                <div className="Row"
+                <div className={this.state.selected ? "Row Selected" : "Row"}
                     onMouseMove={this.select}
-                    onClick={this.click}
+                    onClick={this.click}        
                 >
                     <label style={{ marginRight: this.props.margin }} className="RowCheckbox">
-                        <input onChange={this.changed} type="checkbox" />
-                        <span className="RowCheckboxMark"></span>
+                        <input onChange={this.changed} type="checkbox" checked={this.state.checked} />
+                        { this.state.checked ? <HideIcon className="RowCheckboxMark"/> : <ShowIcon className="RowCheckboxMark"/> }
                     </label>
 
-                    <label>{this.props.title}</label>
+                    <label>{this.props.record.name}</label>
                 </div>
                 <div className="RowContent">
-                    {this.props.children.map((el: any) => (
+                    {this.props.record.children.map((el: any) => (
                         <Row
-                            key={Math.random()}
+                            key={el.id}
                             margin={this.props.margin + 15}
-                            title={el.name}
-                            children={el.children}
+                            record={el}
+                            check={this.props.check}
                         />
                     ))}
                 </div>

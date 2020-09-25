@@ -4,12 +4,6 @@ html {
   --accent-color:#aaa;
   --text-color:#333;
   --neutral-color: #888;
-
-  --check-icon:url('./img/sign_check_d.svg');
-  --uncheck-icon:url('./img/sign_uncheck_d.svg');
-  --warn-icon:url('./img/sign_warn_d.svg');
-  --sun-icon:url('./img/sun.svg');
-  --moon-icon:url('./img/moon.svg');
 }
 
 html[data-theme="night"] {
@@ -17,10 +11,6 @@ html[data-theme="night"] {
   --secondary-color:#444;
   --accent-color:#666;
   --text-color:#ddd;
-
-  --check-icon:url('./img/sign_check_n.svg');
-  --uncheck-icon:url('./img/sign_uncheck_n.svg');
-  --warn-icon:url('./img/sign_warn_n.svg');
 }
 
 #root{
@@ -97,15 +87,6 @@ body {
   left: 0;
   height: 15px;
   width: 15px;
-  background: var(--check-icon);
-}
-
-.CheckedChild {
-  background: var(--warn-icon);
-}
-
-.RowCheckbox input:checked ~ .RowCheckboxMark {
-  background: var(--uncheck-icon) !important;
 }
 
 .Template{
@@ -151,12 +132,10 @@ body {
 
 .SwitchSunMark {
   flex:1;
-  background: var(--sun-icon) no-repeat;
 }
 
 .SwitchMoonMark {
   flex:1;
-  background: var(--moon-icon);
 }
 
 .SwitchSlider{

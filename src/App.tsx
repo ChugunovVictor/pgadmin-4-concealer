@@ -1,9 +1,13 @@
 import React, { ChangeEvent, MouseEvent, SyntheticEvent } from 'react';
 import Switch from './Switch';
 import Table from './Table';
+import {Record} from './Record'
+
+import {ReactComponent as SaveIcon} from './img/save.svg';
+import {ReactComponent as ApplyIcon} from './img/apply.svg';
 
 type AppProps = {
-  data: any,
+  data: Record,
 }
 
 export default class App extends React.Component<AppProps> {
@@ -13,25 +17,22 @@ export default class App extends React.Component<AppProps> {
   }
 
   state = {
-    theme: 1
+    theme: true
   }
 
   dayNight() {
-    if (this.state.theme) {
-        document.getElementsByTagName('html')[0].setAttribute('data-theme', 'night')
-        this.setState({theme: 0})
-    } else {
-        document.getElementsByTagName('html')[0].setAttribute('data-theme', 'day')
-        this.setState({theme: 1})
-    }
+    this.setState({theme: !this.state.theme})
+    document.getElementsByTagName('html')[0].setAttribute('data-theme', this.state.theme ? 'night' : 'day')
   }
 
   render() {
     return (
       <div className="Template">
-        <Table data={this.props.data} />
+        <Table data={this.props.data} theme={this.state.theme} />
         <div className="Panel">
           <Switch value={this.state.theme} toggle={this.dayNight}/>
+          <SaveIcon stroke="red" width="20" height="20"/>
+          <ApplyIcon stroke="red" width="20" height="20" />
         </div>
       </div>
     );

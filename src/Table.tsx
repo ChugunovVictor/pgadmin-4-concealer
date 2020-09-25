@@ -4,18 +4,23 @@ export let SELECT: boolean = false;
 
 type TableProps = {
   data: any,
+  theme: boolean
 }
 
 export default class Table extends React.Component<TableProps> {
+  subscribers: Set<Function> = new Set();
+
   constructor(props: TableProps) {
     super(props);
-    this.startSelection = this.startSelection.bind(this)
-    this.endSelection = this.endSelection.bind(this)
-    this.keyPress = this.keyPress.bind(this)
+    this.startSelection = this.startSelection.bind(this);
+    this.endSelection = this.endSelection.bind(this);
+    this.keyPress = this.keyPress.bind(this);
+    this.subscribe = this.subscribe.bind(this);
   }
 
   keyPress(event: KeyboardEvent) {
     if (event.code == 'Space') {
+      /* define which values are more - checked or unchecked - and set to the value of least */
       let elements = document.querySelectorAll('.Selected input[type=checkbox]')
       let checked = 0;
 
@@ -27,14 +32,15 @@ export default class Table extends React.Component<TableProps> {
         }
       )
 
-      elements.forEach(
-        // @ts-ignore
-        el => { el.checked = checked >= 0 ? false : true }
-      )
+      this.subscribers.forEach(childMethod => childMethod(checked >= 0 ? false : true, null));
     }
 
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  subscribe(method: Function){
+    this.subscribers.add(method)
   }
 
   componentDidMount() {
@@ -45,9 +51,7 @@ export default class Table extends React.Component<TableProps> {
   }
 
   startSelection() {
-    document.querySelectorAll('.Selected').forEach(
-      el => el.classList?.remove('Selected')
-    )
+    this.subscribers.forEach(childMethod => childMethod(null, true));
     SELECT = true;
   }
 
@@ -61,8 +65,7 @@ export default class Table extends React.Component<TableProps> {
           onMouseDown={this.startSelection}
           onMouseUp={this.endSelection}
         >
-          <Row margin={25} title={this.props.data.name}
-            children={this.props.data.children} />
+          <Row margin={25} record={this.props.data} check={this.subscribe} key={"root"}/>
       </div>
     );
   }

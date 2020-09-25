@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+/*
 // Once the DOM is ready...
 window.addEventListener('DOMContentLoaded', () => {
   // ...query for the active tab...
@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
         ));
   });
 });
-/*
+*/
 
 let params: any = {
   data: {
@@ -36,73 +36,13 @@ let params: any = {
         icon: "", id: "tree_name1", name: "PostgreSQL 12", children: [
           { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name104" },
           { children: [], icon: "", id: "tree_name105", name: "Табличные пространства" },
-          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name104" },
+          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name177" },
           { children: [], icon: "", id: "tree_name305", name: "Табличные пространства" },
           {
             icon: "", id: "tree_name2", name: "Базы данных (3)", "children": [
               { name: "postgres", icon: "", children: Array(0), id: "tree_name3" },
               { children: [], icon: "", id: "tree_name4", name: "sp_main" },
               { name: "sp_portal", icon: "", children: Array(0), id: "tree_name103" }
-            ]
-          }
-        ]
-      },
-      {
-        icon: "", id: "tree_name222", name: "PostgreSQL 12", children: [
-          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name225" },
-          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
-          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name204" },
-          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
-          {
-            icon: "", id: "tree_name333", name: "Базы данных (3)", "children": [
-              { name: "postgres", icon: "", children: Array(0), id: "tree_name233" },
-              { children: [], icon: "", id: "tree_name433", name: "sp_main" },
-              { name: "sp_portal", icon: "", children: Array(0), id: "tree_name223" }
-            ]
-          }
-        ]
-      },
-      {
-        icon: "", id: "tree_name222", name: "PostgreSQL 12", children: [
-          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name225" },
-          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
-          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name204" },
-          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
-          {
-            icon: "", id: "tree_name333", name: "Базы данных (3)", "children": [
-              { name: "postgres", icon: "", children: Array(0), id: "tree_name233" },
-              { children: [], icon: "", id: "tree_name433", name: "sp_main" },
-              { name: "sp_portal", icon: "", children: Array(0), id: "tree_name223" }
-            ]
-          }
-        ]
-      },
-      {
-        icon: "", id: "tree_name222", name: "PostgreSQL 12", children: [
-          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name225" },
-          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
-          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name204" },
-          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
-          {
-            icon: "", id: "tree_name333", name: "Базы данных (3)", "children": [
-              { name: "postgres", icon: "", children: Array(0), id: "tree_name233" },
-              { children: [], icon: "", id: "tree_name433", name: "sp_main" },
-              { name: "sp_portal", icon: "", children: Array(0), id: "tree_name223" }
-            ]
-          }
-        ]
-      },
-      {
-        icon: "", id: "tree_name222", name: "PostgreSQL 12", children: [
-          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name225" },
-          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
-          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name204" },
-          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
-          {
-            icon: "", id: "tree_name333", name: "Базы данных (3)", "children": [
-              { name: "postgres", icon: "", children: Array(0), id: "tree_name233" },
-              { children: [], icon: "", id: "tree_name433", name: "sp_main" },
-              { name: "sp_portal", icon: "", children: Array(0), id: "tree_name223" }
             ]
           }
         ]
@@ -117,7 +57,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 )
-*/
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
