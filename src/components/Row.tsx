@@ -1,15 +1,18 @@
 import React from "react";
 import { ChangeEvent, SyntheticEvent, MouseEvent } from "react";
 import { SELECT } from "./Table";
-import {Record} from '../models/Record'
-import {ReactComponent as ShowIcon} from './image/show.svg';
-import {ReactComponent as HideIcon} from './image/hide.svg';
-//import {ReactComponent as WarnIcon} from './image/warn.svg';
+import { THEME } from './App'
+import { Record } from '../models/Record'
+import { ReactComponent as ShowIcon } from '../images/show.svg';
+import { ReactComponent as HideIcon } from '../images/hide.svg';
+import { ReactComponent as WarnIcon } from '../images/warn.svg';
 
 export type RowProps = {
     record: Record,
     margin: number,
-    check: Function
+    check: Function,
+    checkedChild: Function,
+    id: string
 }
 
 export default class Row extends React.Component<RowProps> {
@@ -19,63 +22,82 @@ export default class Row extends React.Component<RowProps> {
         this.click = this.click.bind(this)
         this.changed = this.changed.bind(this)
         this.check = this.check.bind(this)
+        this.checkedChild = this.checkedChild.bind(this)
     }
 
     state = {
         checked: false,
-        selected: false
+        selected: false,
+        checkedChild: 0
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.check(this.check)
     }
 
     select(event: SyntheticEvent) {
         if (SELECT) {
-            this.setState({selected : true})
+            this.setState({ selected: true })
         }
     }
 
     click(event: MouseEvent) {
-        this.setState({selected : true})
+        this.setState({ selected: true })
     }
 
     changed(event: ChangeEvent) {
-        this.setState({checked : !this.state.checked})
+        this.props.checkedChild(!this.state.checked);
+        this.setState({ checked: !this.state.checked })
     }
 
-    check(checked: boolean, selected: boolean){
-        if(checked != null && this.state.selected)
-            this.setState({checked : checked, selected: false})
+    check(checked: boolean, selected: boolean) {
+        
+        if (checked != null && this.state.selected){
+            this.props.checkedChild(checked);
+            this.setState({ checked: checked, selected: false, checkedChild: 0 })
+        }
 
-        if(selected)
-            this.setState({selected: false})
+        if (selected)
+            this.setState({ selected: false })
+    }
+
+    checkedChild(value: boolean) {
+        this.setState({ checkedChild: this.state.checkedChild + (value ? 1 : -1) })
     }
 
     render() {
         return (
             <div>
-                <div className={this.state.selected ? "Row Selected" : "Row"}
+                <div id={this.props.id} className={this.state.selected ? "Row Selected" : "Row"}
                     onMouseMove={this.select}
-                    onClick={this.click}        
+                    onClick={this.click}
                 >
                     <label style={{ marginRight: this.props.margin }} className="RowCheckbox">
                         <input onChange={this.changed} type="checkbox" checked={this.state.checked} />
-                        { this.state.checked ? <HideIcon className="RowCheckboxMark"/> : <ShowIcon className="RowCheckboxMark"/> }
+                        {this.state.checked ?
+                            <HideIcon className="RowCheckboxMark" stroke={THEME ? 'lightcoral' : 'red'} /> :
+                            (this.state.checkedChild ?
+                                <WarnIcon className="RowCheckboxMark" stroke={THEME ? 'yellow' : 'goldenrod'}/> :
+                                <ShowIcon className="RowCheckboxMark" stroke={THEME ? 'lightgreen' : 'green'} />)
+                        }
                     </label>
 
                     <label>{this.props.record.name}</label>
                 </div>
-                <div className="RowContent">
-                    {this.props.record.children.map((el: any) => (
-                        <Row
-                            key={el.id}
-                            margin={this.props.margin + 15}
-                            record={el}
-                            check={this.props.check}
-                        />
-                    ))}
-                </div>
+                {
+                    !this.state.checked && <div className="RowContent">
+                        {this.props.record.children.map((el: any) => (
+                            <Row
+                                id={el.id}
+                                key={el.id}
+                                margin={this.props.margin + 15}
+                                record={el}
+                                check={this.props.check}
+                                checkedChild={this.checkedChild}
+                            />
+                        ))}
+                    </div>
+                }
             </div>
         );
     }

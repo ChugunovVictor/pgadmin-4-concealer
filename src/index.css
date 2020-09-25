@@ -13,7 +13,7 @@ html[data-theme="night"] {
   --text-color:#ddd;
 }
 
-#root{
+#extension{
   height: 100%;
   width: 100%;
 }
@@ -101,11 +101,26 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   width: 45px;
   background: var(--secondary-color);
   border-radius: 5px;
   margin: 3px 0;
 }
+
+.PanelButton{
+  margin: 3px 0 0 0;
+  border-radius: 5px;
+}
+
+.PanelButton:hover {
+  background: rgba(120, 120, 120, 0.5);
+}
+.PanelButton:active {
+  stroke: var(--secondary-color);
+}
+
+
 
 
 

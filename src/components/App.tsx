@@ -3,8 +3,10 @@ import Switch from './Switch';
 import Table from './Table';
 import {Record} from '../models/Record'
 
-import {ReactComponent as SaveIcon} from './image/save.svg';
-import {ReactComponent as ApplyIcon} from './image/apply.svg';
+import {ReactComponent as SaveIcon} from '../images/save.svg';
+import {ReactComponent as ApplyIcon} from '../images/apply.svg';
+
+export let THEME = true
 
 type AppProps = {
   data: Record,
@@ -14,25 +16,42 @@ export default class App extends React.Component<AppProps> {
   constructor(props: AppProps) {
     super(props);
     this.dayNight = this.dayNight.bind(this)
-  }
-
-  state = {
-    theme: true
+    document.getElementsByTagName('html')[0].setAttribute('data-theme', THEME ? 'night' : 'day');
   }
 
   dayNight() {
-    this.setState({theme: !this.state.theme})
-    document.getElementsByTagName('html')[0].setAttribute('data-theme', this.state.theme ? 'night' : 'day')
+    THEME = !THEME;
+    this.setState({});
+    document.getElementsByTagName('html')[0].setAttribute('data-theme', THEME ? 'night' : 'day');
+  }
+
+  apply(){
+    // @ts-ignore
+    chrome.tabs.query({
+      active: true,
+      currentWindow: true
+    }, (tabs: any) => {
+      //@ts-ignore
+      chrome.tabs.sendMessage(
+          tabs[0].id,
+          {
+            from: 'popup', 
+            subject: 'toggle', 
+            //@ts-ignore
+            value: [...document.querySelectorAll('.Row')].filter(e => e.getElementsByTagName('input')[0].checked).map(e => e.id)
+          },
+      )
+    });
   }
 
   render() {
     return (
       <div className="Template">
-        <Table data={this.props.data} theme={this.state.theme} />
+        <Table data={this.props.data} />
         <div className="Panel">
-          <Switch value={this.state.theme} toggle={this.dayNight}/>
-          <SaveIcon stroke="red" width="20" height="20"/>
-          <ApplyIcon stroke="red" width="20" height="20" />
+          <Switch toggle={this.dayNight}/>
+          <SaveIcon className="PanelButton" width="20" height="20" stroke={THEME ? 'lightcoral' : 'red'}/>
+          <ApplyIcon onClick={this.apply} className="PanelButton" width="20" height="20" stroke={THEME ? 'lightgreen' : 'green'}/>
         </div>
       </div>
     );

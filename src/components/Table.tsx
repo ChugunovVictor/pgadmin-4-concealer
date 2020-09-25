@@ -3,8 +3,7 @@ import Row from './Row';
 export let SELECT: boolean = false;
 
 type TableProps = {
-  data: any,
-  theme: boolean
+  data: any
 }
 
 export default class Table extends React.Component<TableProps> {
@@ -33,10 +32,10 @@ export default class Table extends React.Component<TableProps> {
       )
 
       this.subscribers.forEach(childMethod => childMethod(checked >= 0 ? false : true, null));
-    }
 
-    event.stopPropagation();
-    event.preventDefault();
+      event.stopPropagation();
+      event.preventDefault();
+    }
   }
 
   subscribe(method: Function){
@@ -65,7 +64,14 @@ export default class Table extends React.Component<TableProps> {
           onMouseDown={this.startSelection}
           onMouseUp={this.endSelection}
         >
-          <Row margin={25} record={this.props.data} check={this.subscribe} key={"root"}/>
+          <Row 
+            margin={25} 
+            record={this.props.data} 
+            check={this.subscribe} 
+            key={"root"} 
+            id={"root"} 
+            checkedChild={()=>{}}
+          />
       </div>
     );
   }
