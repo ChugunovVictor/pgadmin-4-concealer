@@ -1,10 +1,10 @@
 import React from "react";
 import { ChangeEvent, SyntheticEvent, MouseEvent } from "react";
 import { SELECT } from "./Table";
-import {Record} from './Record'
-import {ReactComponent as ShowIcon} from './img/show.svg';
-import {ReactComponent as HideIcon} from './img/hide.svg';
-//import {ReactComponent as WarnIcon} from './img/warn.svg';
+import {Record} from '../models/Record'
+import {ReactComponent as ShowIcon} from './image/show.svg';
+import {ReactComponent as HideIcon} from './image/hide.svg';
+//import {ReactComponent as WarnIcon} from './image/warn.svg';
 
 export type RowProps = {
     record: Record,

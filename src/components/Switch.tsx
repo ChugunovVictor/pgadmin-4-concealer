@@ -1,7 +1,7 @@
 import React, { ChangeEvent, MouseEvent, SyntheticEvent } from 'react';
 
-import {ReactComponent as SunIcon} from './img/sun.svg';
-import {ReactComponent as MoonIcon} from './img/moon.svg';
+import {ReactComponent as SunIcon} from './image/sun.svg';
+import {ReactComponent as MoonIcon} from './image/moon.svg';
 
 type SwitchProps = {
   value: boolean,

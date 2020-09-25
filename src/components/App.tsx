@@ -1,10 +1,10 @@
-import React, { ChangeEvent, MouseEvent, SyntheticEvent } from 'react';
+import React from 'react';
 import Switch from './Switch';
 import Table from './Table';
-import {Record} from './Record'
+import {Record} from '../models/Record'
 
-import {ReactComponent as SaveIcon} from './img/save.svg';
-import {ReactComponent as ApplyIcon} from './img/apply.svg';
+import {ReactComponent as SaveIcon} from './image/save.svg';
+import {ReactComponent as ApplyIcon} from './image/apply.svg';
 
 type AppProps = {
   data: Record,
