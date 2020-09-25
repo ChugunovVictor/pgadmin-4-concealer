@@ -61,6 +61,51 @@ let params: any = {
             ]
           }
         ]
+      },
+      {
+        icon: "", id: "tree_name222", name: "PostgreSQL 12", children: [
+          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name225" },
+          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
+          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name204" },
+          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
+          {
+            icon: "", id: "tree_name333", name: "Базы данных (3)", "children": [
+              { name: "postgres", icon: "", children: Array(0), id: "tree_name233" },
+              { children: [], icon: "", id: "tree_name433", name: "sp_main" },
+              { name: "sp_portal", icon: "", children: Array(0), id: "tree_name223" }
+            ]
+          }
+        ]
+      },
+      {
+        icon: "", id: "tree_name222", name: "PostgreSQL 12", children: [
+          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name225" },
+          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
+          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name204" },
+          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
+          {
+            icon: "", id: "tree_name333", name: "Базы данных (3)", "children": [
+              { name: "postgres", icon: "", children: Array(0), id: "tree_name233" },
+              { children: [], icon: "", id: "tree_name433", name: "sp_main" },
+              { name: "sp_portal", icon: "", children: Array(0), id: "tree_name223" }
+            ]
+          }
+        ]
+      },
+      {
+        icon: "", id: "tree_name222", name: "PostgreSQL 12", children: [
+          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name225" },
+          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
+          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name204" },
+          { children: [], icon: "", id: "tree_name205", name: "Табличные пространства" },
+          {
+            icon: "", id: "tree_name333", name: "Базы данных (3)", "children": [
+              { name: "postgres", icon: "", children: Array(0), id: "tree_name233" },
+              { children: [], icon: "", id: "tree_name433", name: "sp_main" },
+              { name: "sp_portal", icon: "", children: Array(0), id: "tree_name223" }
+            ]
+          }
+        ]
       }
     ]
   }

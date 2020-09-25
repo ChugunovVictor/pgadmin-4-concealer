@@ -10,7 +10,7 @@
    viewBox="0 0 50.799999 50.800001"
    version="1.1"
    id="svg881"
-   sodipodi:docname="sign_uncheck.svg"
+   sodipodi:docname="sign_uncheck_d.svg"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <metadata
      id="metadata887">
@@ -38,31 +38,29 @@
      inkscape:window-height="1057"
      id="namedview883"
      showgrid="false"
-     inkscape:zoom="17.519685"
-     inkscape:cx="25.4"
-     inkscape:cy="25.4"
+     inkscape:zoom="6.8561669"
+     inkscape:cx="-34.056296"
+     inkscape:cy="6.6400351"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg881" />
+     inkscape:current-layer="svg881"
+     inkscape:document-rotation="0" />
   <g
      stroke="lightcoral"
-     id="g879">
+     id="g879"
+     style="fill:none">
     <path
-       fill="none"
-       stroke="#00000"
-       strokeWidth="1.9843751"
-       d="M 26.009782,14.612545 C 17.961993,14.612427 10.610333,18.177809 7.0398809,23.8125 10.610333,29.447191 17.961993,33.012573 26.009782,33.012454 34.057384,33.01242 41.408797,29.447061 44.979167,23.8125 41.408797,18.177939 34.057384,14.61258 26.009782,14.612545 Z"
        id="path875"
-       style="stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none" />
-    <circle
-       fill="none"
-       stroke="#00000"
-       strokeWidth="1.9843751"
-       cx="26.3848"
-       cy="23.73897"
-       r="6.511651"
-       id="circle877"
-       style="stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none" />
+       style="stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;fill:none"
+       d="M 23.996094 14.697266 C 16.753459 15.237402 10.30883 18.652333 7.0390625 23.8125 C 8.0158459 25.354006 9.2840631 26.734421 10.763672 27.935547 L 23.996094 14.697266 z M 41.404297 19.808594 L 28.314453 32.904297 C 35.437974 32.295072 41.752736 28.903248 44.978516 23.8125 C 44.034235 22.322289 42.820462 20.981654 41.404297 19.808594 z " />
   </g>
+  <rect
+     style="fill:lightcoral;fill-opacity:1;stroke:none;stroke-width:3.51256"
+     id="rect832"
+     width="7.508038"
+     height="47.296192"
+     x="31.548515"
+     y="-24.922583"
+     transform="matrix(0.69943316,0.71469802,-0.7150744,0.69904836,0,0)" />
 </svg>

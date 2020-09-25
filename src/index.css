@@ -23,6 +23,11 @@ html[data-theme="night"] {
   --warn-icon:url('./img/sign_warn_n.svg');
 }
 
+#root{
+  height: 100%;
+  width: 100%;
+}
+
 body {
   margin: 0;
   width: 600px;
@@ -50,6 +55,27 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
+  overflow: auto;
+}
+
+.App::-webkit-scrollbar-track
+{
+  background: var(--main-color);
+  margin: 3px;
+}
+
+.App::-webkit-scrollbar
+{
+	width: 10px;
+  background: var(--main-color);
+  margin: 3px;
+}
+
+.App::-webkit-scrollbar-thumb
+{
+  background: var(--accent-color);
+  border-radius: 5px;
+  margin: 3px;
 }
 
 .RowCheckbox {
@@ -83,6 +109,7 @@ body {
 }
 
 .Template{
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: stretch;

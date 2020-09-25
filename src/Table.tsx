@@ -32,6 +32,9 @@ export default class Table extends React.Component<TableProps> {
         el => { el.checked = checked >= 0 ? false : true }
       )
     }
+
+    event.stopPropagation();
+    event.preventDefault();
   }
 
   componentDidMount() {
