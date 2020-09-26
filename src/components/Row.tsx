@@ -77,7 +77,7 @@ export default class Row extends React.Component<RowProps> {
                         {this.state.checked ?
                             <HideIcon className="RowCheckboxMark" stroke={THEME ? 'lightcoral' : 'red'} /> :
                             (this.state.checkedChild ?
-                                <WarnIcon className="RowCheckboxMark" stroke={THEME ? 'yellow' : 'goldenrod'}/> :
+                                <WarnIcon className="RowCheckboxMark" stroke={THEME ? 'yellow' : 'blue'}/> :
                                 <ShowIcon className="RowCheckboxMark" stroke={THEME ? 'lightgreen' : 'green'} />)
                         }
                     </label>
