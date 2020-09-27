@@ -5,11 +5,3 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
     chrome.pageAction.show(sender.tab.id);
   }
 });
-/*
-Image.prototype.coreOnload = Image.prototype.onload;
-Image.prototype.onload = function() {
-   console.log('Image Loaded ' + this.src);
-   if( this.coreOnload ) {
-      this.coreOnload();
-    }
-};*/

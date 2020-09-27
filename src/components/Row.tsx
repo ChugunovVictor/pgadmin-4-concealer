@@ -33,6 +33,9 @@ export default class Row extends React.Component<RowProps> {
 
     componentDidMount() {
         this.props.check(this.check)
+        if(this.props.record.display?.indexOf('none') >= 0){
+            this.setState({ checked: true })
+        }
     }
 
     select(event: SyntheticEvent) {
@@ -75,7 +78,7 @@ export default class Row extends React.Component<RowProps> {
                 >
                     <label style={{ marginRight: this.props.margin }} className="RowCheckbox">
                         <input onChange={this.changed} type="checkbox" checked={this.state.checked} />
-                        {this.state.checked ?
+                        {this.state.checked?
                             <HideIcon className="RowCheckboxMark" stroke={THEME ? 'lightcoral' : 'red'} /> :
                             (this.state.checkedChild ?
                                 <WarnIcon className="RowCheckboxMark" stroke={THEME ? 'yellow' : 'blue'}/> :

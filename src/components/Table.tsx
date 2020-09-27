@@ -15,6 +15,8 @@ export default class Table extends React.Component<TableProps> {
     this.endSelection = this.endSelection.bind(this);
     this.keyPress = this.keyPress.bind(this);
     this.subscribe = this.subscribe.bind(this);
+
+    console.log(this.props.data)
   }
 
   keyPress(event: KeyboardEvent) {

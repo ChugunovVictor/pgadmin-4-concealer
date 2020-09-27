@@ -132,11 +132,11 @@ body {
   position: relative;
   user-select: none;
   background: var(--accent-color);
-  width: 40px;
-  height: 20px;
+  width: 32px;
+  height: 64px;
   border-radius: 5px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-self: center ;
   margin-top: 3px;
 }
@@ -158,17 +158,17 @@ body {
 }
 
 .SwitchSlider{
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   border-radius: 5px;
   position: absolute;
   opacity: 0.75;
   background: var(--neutral-color);
-  left: 0%;
+  top: 0%;
   transition: all 1s ease;
 }
 
 .SwitchCheckbox input:checked ~ .SwitchSlider {
-  left: 100%;
-  transform: translate(-100%, 0);
+  top: 100%;
+  transform: translate(0, -100%);
 }

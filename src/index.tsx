@@ -24,7 +24,6 @@ window.addEventListener('DOMContentLoaded', () => {
     chrome.tabs.sendMessage( tabs[0].id, { from: 'popup', subject: 'DOMInfo' }, null);
   });
 });
-
 /*
 
 let params: any = {

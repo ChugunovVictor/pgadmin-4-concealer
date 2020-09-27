@@ -10,8 +10,11 @@ async function loadSVG(url){
     return (await fetch(url)).text()
 }
 
+// TODO icons caching
+
 async function process(){
     let unprocessed = document.getElementsByClassName('aciTreeInode');
+
     let processed = new Map()
 
     processed.set('root', {name: 'root', icon: '', children: []})
@@ -19,7 +22,7 @@ async function process(){
 
     for(let j = 1 ; j< unprocessed.length; j++){
             let name = unprocessed[j].getElementsByClassName('aciTreeText')[0].innerText;
-            let display = unprocessed[j].getElementsByClassName('aciTreeText')[0].style.display;
+            let display = unprocessed[j].style.display;
 
             let x = getComputedStyle(
                 unprocessed[j].getElementsByClassName('aciTreeIcon')[0]

@@ -3,7 +3,7 @@ import Switch from './Switch';
 import Table from './Table';
 import {Record} from '../models/Record'
 
-import {ReactComponent as SaveIcon} from '../images/save.svg';
+//import {ReactComponent as SaveIcon} from '../images/save.svg';
 import {ReactComponent as ApplyIcon} from '../images/apply.svg';
 
 export let THEME = true
@@ -44,14 +44,15 @@ export default class App extends React.Component<AppProps> {
     });
   }
 
+  // <SaveIcon className="PanelButton" width="32" height="32" stroke={THEME ? 'lightcoral' : 'red'}/>
   render() {
     return (
       <div className="Template">
         <Table data={this.props.data} />
         <div className="Panel">
           <Switch toggle={this.dayNight}/>
-          <SaveIcon className="PanelButton" width="20" height="20" stroke={THEME ? 'lightcoral' : 'red'}/>
-          <ApplyIcon onClick={this.apply} className="PanelButton" width="20" height="20" stroke={THEME ? 'lightgreen' : 'green'}/>
+          
+          <ApplyIcon onClick={this.apply} className="PanelButton" width="32" height="32" stroke={THEME ? 'lightgreen' : 'green'}/>
         </div>
       </div>
     );
