@@ -10,25 +10,35 @@ async function loadSVG(url){
     return (await fetch(url)).text()
 }
 
-// TODO icons caching
-
 async function process(){
     let unprocessed = document.getElementsByClassName('aciTreeInode');
 
     let processed = new Map()
 
-    processed.set('root', {name: 'root', icon: '', children: []})
+    processed.set('root', {name: 'root', icon: '', children: [], cachedSVGs: {}})
     unprocessed[0].setAttribute('tree_name', 'root')
 
     for(let j = 1 ; j< unprocessed.length; j++){
             let name = unprocessed[j].getElementsByClassName('aciTreeText')[0].innerText;
             let display = unprocessed[j].style.display;
 
+            // ----------- SVGs ------------
+
+            let icon = 0;
             let x = getComputedStyle(
                 unprocessed[j].getElementsByClassName('aciTreeIcon')[0]
                 ).backgroundImage;
             let y = x.substring(5, x.length-2);
-            let icon = await loadSVG(y)
+            let iconSVG = await loadSVG(y)
+
+            // check whatever its alreaddy in list but with diff set of classes
+            let find = Object.values(processed.get('root').cachedSVGs).find(r => r.svg == iconSVG)
+            if(find){
+                icon = find.id
+            } else {
+                processed.get('root').cachedSVGs['svg'+j] = {id: j, svg: iconSVG}
+                icon = j
+            }
 
             unprocessed[j].setAttribute('tree_name', 'tree_name'+j)
 
@@ -44,6 +54,8 @@ async function process(){
             processed.get(parent).children.push(processed.get('tree_name'+j))
     }
 
+    processed.get('root').cachedSVGs = Object.values(processed.get('root').cachedSVGs)
+    processed.get('root').cachedSVGs.forEach(e => {e.svg = btoa(e.svg)})
     return processed.get('root');
 }
 

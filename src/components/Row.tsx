@@ -1,6 +1,6 @@
 import React from "react";
 import { ChangeEvent, SyntheticEvent, MouseEvent } from "react";
-import { SELECT } from "./Table";
+import { SELECT, ICONS } from "./Table";
 import { THEME } from './App'
 import { Record } from '../models/Record'
 import { ReactComponent as ShowIcon } from '../images/show.svg';
@@ -88,7 +88,7 @@ export default class Row extends React.Component<RowProps> {
                     
                     {
                         this.props.record.icon &&
-                        <img width="20px" height="20px" src={"data:image/svg+xml;base64," + btoa(this.props.record.icon)} alt=""/>
+                        <img width="20px" height="20px" src={ "data:image/svg+xml;base64," + ICONS.find(el => el.id == this.props.record.icon)?.svg } alt=""/>
                     }
                     
                     <label>{this.props.record.name}</label>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Row from './Row';
 export let SELECT: boolean = false;
+export let ICONS: any[] = [];
 
 type TableProps = {
   data: any
@@ -16,7 +17,7 @@ export default class Table extends React.Component<TableProps> {
     this.keyPress = this.keyPress.bind(this);
     this.subscribe = this.subscribe.bind(this);
 
-    console.log(this.props.data)
+    ICONS = this.props.data.cachedSVGs
   }
 
   keyPress(event: KeyboardEvent) {

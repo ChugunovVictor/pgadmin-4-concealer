@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 //@ts-ignore
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  console.log(message.data)
   ReactDOM.render(
     <React.StrictMode>
       <App data={message.data} />
