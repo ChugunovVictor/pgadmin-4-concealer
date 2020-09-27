@@ -6,7 +6,11 @@ chrome.runtime.sendMessage({
     value: null
 });
 
-function process(){
+async function loadSVG(url){
+    return (await fetch(url)).text()
+}
+
+async function process(){
     let unprocessed = document.getElementsByClassName('aciTreeInode');
     let processed = new Map()
 
@@ -14,11 +18,15 @@ function process(){
     unprocessed[0].setAttribute('tree_name', 'root')
 
     for(let j = 1 ; j< unprocessed.length; j++){
-            let icon = unprocessed[j].getElementsByClassName('aciTreeIcon')[0].style.background;
             let name = unprocessed[j].getElementsByClassName('aciTreeText')[0].innerText;
             let display = unprocessed[j].getElementsByClassName('aciTreeText')[0].style.display;
 
-            processed.set('tree_name'+j, {name: name, display: display, icon: icon, children: [], id: 'tree_name' + j})
+            let x = getComputedStyle(
+                unprocessed[j].getElementsByClassName('aciTreeIcon')[0]
+                ).backgroundImage;
+            let y = x.substring(5, x.length-2);
+            let icon = await loadSVG(y)
+
             unprocessed[j].setAttribute('tree_name', 'tree_name'+j)
 
             let parent = ((el) => {
@@ -29,6 +37,7 @@ function process(){
                 return p.getAttribute('tree_name') ? p.getAttribute('tree_name') : 'root'
             })(unprocessed[j])
             
+            processed.set('tree_name'+j, {name: name, display: display, icon: icon, children: [], id: 'tree_name' + j})
             processed.get(parent).children.push(processed.get('tree_name'+j))
     }
 
@@ -42,9 +51,12 @@ function toggle(list){
 }
 
 // Listen for messages from the popup.
-chrome.runtime.onMessage.addListener((msg, sender, response) => {
+chrome.runtime.onMessage.addListener(async (msg, sender, response) => {
     if ((msg.from === 'popup') && (msg.subject === 'DOMInfo')) {
-        response({data : process()});
+        let result = await process()
+        chrome.runtime.sendMessage({
+            data: result 
+        }, null);
     }
     if ((msg.from === 'popup') && (msg.subject === 'toggle')) {
         toggle(msg.value);

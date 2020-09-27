@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, SyntheticEvent } from 'react';
+import React from 'react';
 import Row from './Row';
 export let SELECT: boolean = false;
 
@@ -18,7 +18,7 @@ export default class Table extends React.Component<TableProps> {
   }
 
   keyPress(event: KeyboardEvent) {
-    if (event.code == 'Space') {
+    if (event.code === 'Space') {
       /* define which values are more - checked or unchecked - and set to the value of least */
       let elements = document.querySelectorAll('.Selected input[type=checkbox]')
       let checked = 0;

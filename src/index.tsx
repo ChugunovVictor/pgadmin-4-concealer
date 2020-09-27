@@ -4,45 +4,43 @@ import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
-// Once the DOM is ready...
+//@ts-ignore
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App data={message.data} />
+    </React.StrictMode>,
+    document.getElementById('extension')
+  )
+});
+
 window.addEventListener('DOMContentLoaded', () => {
-  // ...query for the active tab...
   //@ts-ignore
   chrome.tabs.query({
     active: true,
     currentWindow: true
   }, (tabs: any) => {
-    // ...and send a request for the DOM info...
     //@ts-ignore
-    chrome.tabs.sendMessage(
-        tabs[0].id,
-        {from: 'popup', subject: 'DOMInfo'},
-        // ...also specifying a callback to be called 
-        //    from the receiving end (content script).
-        (panel: any)=>ReactDOM.render(
-          <React.StrictMode>
-            <App data={panel.data}/>
-          </React.StrictMode>,
-          document.getElementById('extension')
-        ));
+    chrome.tabs.sendMessage( tabs[0].id, { from: 'popup', subject: 'DOMInfo' }, null);
   });
 });
+
 /*
 
 let params: any = {
   data: {
     icon: "", name: "root", children: [
       {
-        icon: "", id: "tree_name1", name: "PostgreSQL 12", children: [
-          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name104" },
-          { children: [], icon: "", id: "tree_name105", name: "Табличные пространства" },
-          { name: "Роли входа/группы", icon: "", children: Array(0), id: "tree_name177" },
-          { children: [], icon: "", id: "tree_name305", name: "Табличные пространства" },
+        icon: "url('http://127.0.0.1:51262/browser/foreign_data_wrapper/static/img/coll-foreign_data_wrapper.svg?ver=42400')", id: "tree_name1", name: "PostgreSQL 12", children: [
+          { name: "Роли входа/группы", icon: "url('http://127.0.0.1:51262/browser/foreign_data_wrapper/static/img/coll-foreign_data_wrapper.svg?ver=42400')", children: Array(0), id: "tree_name104" },
+          { children: [], icon: "url('http://127.0.0.1:51262/browser/foreign_data_wrapper/static/img/coll-foreign_data_wrapper.svg?ver=42400')", id: "tree_name105", name: "Табличные пространства" },
+          { name: "Роли входа/группы", icon: "url('http://127.0.0.1:51262/browser/foreign_data_wrapper/static/img/coll-foreign_data_wrapper.svg?ver=42400')", children: Array(0), id: "tree_name177" },
+          { children: [], icon: "url('http://127.0.0.1:51262/browser/foreign_data_wrapper/static/img/coll-foreign_data_wrapper.svg?ver=42400')", id: "tree_name305", name: "Табличные пространства" },
           {
-            icon: "", id: "tree_name2", name: "Базы данных (3)", "children": [
-              { name: "postgres", icon: "", children: Array(0), id: "tree_name3" },
-              { children: [], icon: "", id: "tree_name4", name: "sp_main" },
-              { name: "sp_portal", icon: "", children: Array(0), id: "tree_name103" }
+            icon: "url('http://127.0.0.1:51262/browser/foreign_data_wrapper/static/img/coll-foreign_data_wrapper.svg?ver=42400')", id: "tree_name2", name: "Базы данных (3)", "children": [
+              { name: "postgres", icon: "url('http://127.0.0.1:51262/browser/foreign_data_wrapper/static/img/coll-foreign_data_wrapper.svg?ver=42400')", children: Array(0), id: "tree_name3" },
+              { children: [], icon: "url('http://127.0.0.1:51262/browser/foreign_data_wrapper/static/img/coll-foreign_data_wrapper.svg?ver=42400')", id: "tree_name4", name: "sp_main" },
+              { name: "sp_portal", icon: "url('http://127.0.0.1:51262/browser/foreign_data_wrapper/static/img/coll-foreign_data_wrapper.svg?ver=42400')", children: Array(0), id: "tree_name103" }
             ]
           }
         ]

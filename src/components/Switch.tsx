@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, SyntheticEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 
 import {ReactComponent as SunIcon} from '../images/sun.svg';
 import {ReactComponent as MoonIcon} from '../images/moon.svg';
@@ -9,10 +9,6 @@ type SwitchProps = {
 }
 
 export default class Switch extends React.Component<SwitchProps> {
-  constructor(props: SwitchProps) {
-    super(props);
-  }
-
   render() {
     return (
       <label className="SwitchCheckbox">

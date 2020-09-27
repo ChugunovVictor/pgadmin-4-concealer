@@ -66,6 +66,7 @@ export default class Row extends React.Component<RowProps> {
     }
 
     render() {
+        //<img style={{display: 'inline-block', width:'20px', height:'20px'}} dangerouslySetInnerHTML={{ __html: this.props.icon}}/>
         return (
             <div>
                 <div id={this.props.id} className={this.state.selected ? "Row Selected" : "Row"}
@@ -81,7 +82,12 @@ export default class Row extends React.Component<RowProps> {
                                 <ShowIcon className="RowCheckboxMark" stroke={THEME ? 'lightgreen' : 'green'} />)
                         }
                     </label>
-
+                    
+                    {
+                        this.props.record.icon &&
+                        <img width="20px" height="20px" src={"data:image/svg+xml;base64," + btoa(this.props.record.icon)} alt=""/>
+                    }
+                    
                     <label>{this.props.record.name}</label>
                 </div>
                 {
