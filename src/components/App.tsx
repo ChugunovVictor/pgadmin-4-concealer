@@ -1,10 +1,11 @@
 import React from 'react';
 import Switch from './Switch';
 import Table from './Table';
-import {Record} from '../models/Record'
+import { Record } from '../models/Record'
 
-//import {ReactComponent as SaveIcon} from '../images/save.svg';
-import {ReactComponent as ApplyIcon} from '../images/apply.svg';
+import { ReactComponent as SaveIcon } from '../images/save.svg';
+import { ReactComponent as ZoomIcon } from '../images/zoom.svg';
+import { ReactComponent as ApplyIcon } from '../images/apply.svg';
 
 export let THEME = true
 
@@ -25,7 +26,7 @@ export default class App extends React.Component<AppProps> {
     document.getElementsByTagName('html')[0].setAttribute('data-theme', THEME ? 'night' : 'day');
   }
 
-  apply(){
+  apply() {
     // @ts-ignore
     chrome.tabs.query({
       active: true,
@@ -33,26 +34,30 @@ export default class App extends React.Component<AppProps> {
     }, (tabs: any) => {
       //@ts-ignore
       chrome.tabs.sendMessage(
-          tabs[0].id,
-          {
-            from: 'popup', 
-            subject: 'toggle', 
-            //@ts-ignore
-            value: [...document.querySelectorAll('.Row')].filter(e => e.getElementsByTagName('input')[0].checked).map(e => e.id)
-          },
+        tabs[0].id,
+        {
+          from: 'popup',
+          subject: 'toggle',
+          //@ts-ignore
+          value: [...document.querySelectorAll('.Row')].filter(e => e.getElementsByTagName('input')[0].checked).map(e => e.id)
+        },
       )
     });
   }
 
-  // <SaveIcon className="PanelButton" width="32" height="32" stroke={THEME ? 'lightcoral' : 'red'}/>
   render() {
     return (
       <div className="Template">
         <Table data={this.props.data} />
         <div className="Panel">
-          <Switch toggle={this.dayNight}/>
-          
-          <ApplyIcon onClick={this.apply} className="PanelButton" width="32" height="32" stroke={THEME ? 'lightgreen' : 'green'}/>
+          <div className="PanelBlock">
+            <ApplyIcon onClick={this.apply} className="PanelButton" width="32" height="32" stroke={THEME ? 'lightgreen' : 'green'} />
+            <SaveIcon className="PanelButton" width="32" height="32" stroke={THEME ? 'lightcoral' : 'red'} />
+          </div>
+          <div className="PanelBlock">
+            <ZoomIcon className="PanelButton" width="32" height="32" stroke={THEME ? 'lightgreen' : 'green'} />
+            <Switch toggle={this.dayNight} />
+          </div>
         </div>
       </div>
     );

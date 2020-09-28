@@ -15,10 +15,10 @@ async function process(){
 
     let processed = new Map()
 
-    processed.set('root', {name: 'root', icon: '', children: [], cachedSVGs: {}})
+    processed.set('root', {name: '', icon: '', children: [], cachedSVGs: {}, id: 'root'})
     unprocessed[0].setAttribute('tree_name', 'root')
 
-    for(let j = 1 ; j< unprocessed.length; j++){
+    for(let j = 0 ; j< unprocessed.length; j++){
             let name = unprocessed[j].getElementsByClassName('aciTreeText')[0].innerText;
             let display = unprocessed[j].style.display;
 
@@ -36,22 +36,28 @@ async function process(){
             if(find){
                 icon = find.id
             } else {
-                processed.get('root').cachedSVGs['svg'+j] = {id: j, svg: iconSVG}
-                icon = j
+                processed.get('root').cachedSVGs['svg'+j] = {id: 'svg' + j, svg: iconSVG}
+                icon = 'svg' + j
             }
 
-            unprocessed[j].setAttribute('tree_name', 'tree_name'+j)
-
-            let parent = ((el) => {
-                let p = el.parentElement;
-                while(!p.classList.contains('aciTreeInode')){
-                    p = p.parentElement
-                }
-                return p.getAttribute('tree_name') ? p.getAttribute('tree_name') : 'root'
-            })(unprocessed[j])
+            if(j != 0){
+                let treeName = 'tree_name'+j
+                unprocessed[j].setAttribute('tree_name', treeName)
             
-            processed.set('tree_name'+j, {name: name, display: display, icon: icon, children: [], id: 'tree_name' + j})
-            processed.get(parent).children.push(processed.get('tree_name'+j))
+                let parent = ((el) => {
+                    let p = el.parentElement;
+                    while(!p.classList.contains('aciTreeInode')){
+                        p = p.parentElement
+                    }
+                    return p.getAttribute('tree_name') ? p.getAttribute('tree_name') : 'root'
+                })(unprocessed[j])
+
+                processed.set(treeName, {name: name, display: display, icon: icon, children: [], id: treeName})
+                processed.get(parent).children.push(processed.get(treeName))
+            } else {
+                processed.get('root').name = name;
+                processed.get('root').icon = icon;
+            }
     }
 
     processed.get('root').cachedSVGs = Object.values(processed.get('root').cachedSVGs)
