@@ -1,7 +1,7 @@
 import React from "react";
 import { ChangeEvent, SyntheticEvent, MouseEvent } from "react";
 import { SELECT, ICONS } from "./Table";
-import { THEME } from './App'
+import { THEME, ZOOM } from './App'
 import { Record } from '../models/Record'
 import { ReactComponent as ShowIcon } from '../images/show.svg';
 import { ReactComponent as HideIcon } from '../images/hide.svg';
@@ -79,19 +79,19 @@ export default class Row extends React.Component<RowProps> {
                     <label style={{ marginRight: this.props.margin }} className="RowCheckbox">
                         <input onChange={this.changed} type="checkbox" checked={this.state.checked} />
                         {this.state.checked?
-                            <HideIcon className="RowCheckboxMark" stroke={THEME ? 'lightcoral' : 'red'} /> :
+                            <HideIcon width={ZOOM + 'px'} height={ZOOM + 'px'} className="RowCheckboxMark" stroke={THEME ? 'lightcoral' : 'red'} /> :
                             (this.state.checkedChild ?
-                                <WarnIcon className="RowCheckboxMark" stroke={THEME ? 'yellow' : 'blue'}/> :
-                                <ShowIcon className="RowCheckboxMark" stroke={THEME ? 'lightgreen' : 'green'} />)
+                                <WarnIcon width={ZOOM + 'px'} height={ZOOM + 'px'} className="RowCheckboxMark" stroke={THEME ? 'yellow' : 'blue'}/> :
+                                <ShowIcon width={ZOOM + 'px'} height={ZOOM + 'px'} className="RowCheckboxMark" stroke={THEME ? 'lightgreen' : 'green'} />)
                         }
                     </label>
                     
                     {
                         this.props.record.icon &&
-                        <img width="20px" height="20px" src={ "data:image/svg+xml;base64," + ICONS.find(el => el.id == this.props.record.icon)?.svg } alt=""/>
+                        <img width={ZOOM + 'px'} height={ZOOM + 'px'} src={ "data:image/svg+xml;base64," + ICONS.find(el => el.id == this.props.record.icon)?.svg } alt=""/>
                     }
                     
-                    <label>{this.props.record.name}</label>
+                    <label style={{fontSize: ZOOM + 'px', whiteSpace: 'nowrap'}}>{this.props.record.name}</label>
                 </div>
                 {
                     !this.state.checked && <div className="RowContent">

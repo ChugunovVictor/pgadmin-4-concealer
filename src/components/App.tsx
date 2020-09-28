@@ -8,6 +8,7 @@ import { ReactComponent as ZoomIcon } from '../images/zoom.svg';
 import { ReactComponent as ApplyIcon } from '../images/apply.svg';
 
 export let THEME = true
+export let ZOOM = 20
 
 type AppProps = {
   data: Record,
@@ -17,6 +18,7 @@ export default class App extends React.Component<AppProps> {
   constructor(props: AppProps) {
     super(props);
     this.dayNight = this.dayNight.bind(this)
+    this.zoom = this.zoom.bind(this)
     document.getElementsByTagName('html')[0].setAttribute('data-theme', THEME ? 'night' : 'day');
   }
 
@@ -45,17 +47,23 @@ export default class App extends React.Component<AppProps> {
     });
   }
 
+  zoom(){
+    if( ZOOM >= 25 ) ZOOM = 15
+    else ZOOM += 5;
+    this.setState({}) 
+  }
+
   render() {
     return (
       <div className="Template">
         <Table data={this.props.data} />
         <div className="Panel">
           <div className="PanelBlock">
-            <ApplyIcon onClick={this.apply} className="PanelButton" width="32" height="32" stroke={THEME ? 'lightgreen' : 'green'} />
-            <SaveIcon className="PanelButton" width="32" height="32" stroke={THEME ? 'lightcoral' : 'red'} />
+            <ApplyIcon onClick={this.apply} className="PanelButton" width={ZOOM * 1.5 + 'px'} height={ZOOM * 1.5 + 'px'} stroke={THEME ? 'lightgreen' : 'green'} />
+            <SaveIcon className="PanelButton" width={ZOOM * 1.5 + 'px'} height={ZOOM * 1.5 + 'px'} stroke={THEME ? 'lightcoral' : 'red'} />
           </div>
           <div className="PanelBlock">
-            <ZoomIcon className="PanelButton" width="32" height="32" stroke={THEME ? 'lightgreen' : 'green'} />
+            <ZoomIcon onClick={this.zoom} className="PanelButton" width={ZOOM * 1.5 + 'px'} height={ZOOM * 1.5 + 'px'} stroke={THEME ? 'lightgreen' : 'green'} />
             <Switch toggle={this.dayNight} />
           </div>
         </div>
