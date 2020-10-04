@@ -3,7 +3,7 @@ import Switch from './Switch';
 import Table from './Table';
 import { Record } from '../models/Record'
 
-import { ReactComponent as SaveIcon } from '../images/save.svg';
+// import { ReactComponent as SaveIcon } from '../images/save.svg';
 import { ReactComponent as ZoomIcon } from '../images/zoom.svg';
 import { ReactComponent as ApplyIcon } from '../images/apply.svg';
 
@@ -54,13 +54,14 @@ export default class App extends React.Component<AppProps> {
   }
 
   render() {
+    //  <SaveIcon className="PanelButton" width={ZOOM * 1.5 + 'px'} height={ZOOM * 1.5 + 'px'} stroke={THEME ? 'lightcoral' : 'red'} />
+          
     return (
       <div className="Template">
         <Table data={this.props.data} />
         <div className="Panel">
           <div className="PanelBlock">
             <ApplyIcon onClick={this.apply} className="PanelButton" width={ZOOM * 1.5 + 'px'} height={ZOOM * 1.5 + 'px'} stroke={THEME ? 'lightgreen' : 'green'} />
-            <SaveIcon className="PanelButton" width={ZOOM * 1.5 + 'px'} height={ZOOM * 1.5 + 'px'} stroke={THEME ? 'lightcoral' : 'red'} />
           </div>
           <div className="PanelBlock">
             <ZoomIcon onClick={this.zoom} className="PanelButton" width={ZOOM * 1.5 + 'px'} height={ZOOM * 1.5 + 'px'} stroke={THEME ? 'lightgreen' : 'green'} />
